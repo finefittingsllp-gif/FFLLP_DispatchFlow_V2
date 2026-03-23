@@ -209,7 +209,7 @@ export function parseAndValidate(
             data[f.key] = items[0][itemKey]
           } else {
             // Multiple items: build a summary
-            const vals = items.map((it, i) => `${i + 1}. ${it[itemKey]}`).filter(v => v !== `${items.indexOf(items[0]) + 1}. `)
+            items.map((it, i) => `${i + 1}. ${it[itemKey]}`).filter(v => v !== `${items.indexOf(items[0]) + 1}. `)
             const nonEmpty = items.map(it => it[itemKey]).filter(Boolean)
             if (nonEmpty.length > 0) {
               data[f.key] = itemKey === 'item_name'

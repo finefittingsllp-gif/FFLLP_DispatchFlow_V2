@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { useSessionStore } from '../../store/sessionStore'
 import { SyncIndicator } from '../ui/SyncIndicator'
 import { getCompany } from '../../lib/config'
+import { LS } from '../../constants/storage'
 
 const navItems = [
   { to: '/',                  label: 'Dashboard' },

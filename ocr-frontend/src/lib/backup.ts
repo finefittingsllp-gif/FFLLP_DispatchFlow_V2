@@ -66,7 +66,7 @@ export async function importBackup(file: File): Promise<{ imported: number; skip
           continue
         }
         // Remove the auto-increment id so Dexie assigns a new one
-        const { id: _id, ...rest } = record as Record<string, unknown>
+        const { id: _id, ...rest } = record as unknown as Record<string, unknown>
         await db.dispatch.add(rest as unknown as import('../types').DispatchRecord)
         imported++
       }
@@ -77,7 +77,7 @@ export async function importBackup(file: File): Promise<{ imported: number; skip
           skipped++
           continue
         }
-        const { id: _id, ...rest } = record as Record<string, unknown>
+        const { id: _id, ...rest } = record as unknown as Record<string, unknown>
         await db.invoice.add(rest as unknown as import('../types').InvoiceRecord)
         imported++
       }
