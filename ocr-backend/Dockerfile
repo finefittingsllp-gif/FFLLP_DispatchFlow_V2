@@ -15,14 +15,8 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Download PaddleOCR models at build time to avoid cold start delays
-RUN python -c "\
-from paddleocr import PaddleOCR; \
-PaddleOCR(use_angle_cls=True, lang='hi', show_log=True); \
-PaddleOCR(use_angle_cls=True, lang='en', show_log=True); \
-print('Models downloaded successfully')"
-
 # Copy application code
+# Note: PaddleOCR models are downloaded at runtime on first startup (~1-2 min)
 COPY . .
 
 EXPOSE 7860
