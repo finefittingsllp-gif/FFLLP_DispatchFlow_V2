@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { TEMPLATES, type TemplateId } from '../constants/schemaTemplates'
 import { SchemaEditor } from '../components/schema/SchemaEditor'
 import { saveSchema } from '../lib/schema'
@@ -320,7 +319,6 @@ function Step4({ onNext, onBack }: {
 
 // ── Main Wizard ───────────────────────────────────────────────────────────
 export function OnboardingWizard() {
-  const navigate = useNavigate()
   const [step, setStep]   = useState(1)
 
   // Accumulated state
@@ -368,7 +366,8 @@ export function OnboardingWizard() {
     // Mark setup complete
     localStorage.setItem(LS.SETUP_COMPLETE, 'true')
 
-    navigate('/', { replace: true })
+    // Full reload so App re-evaluates isSetupComplete()
+    window.location.replace('/')
   }
 
   return (
