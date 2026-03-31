@@ -53,10 +53,8 @@ export function ScanZone({ fields, onResult }: Props) {
         video: { facingMode: 'environment', width: { ideal: 1920 }, height: { ideal: 1080 } },
       })
       streamRef.current = stream
-      // videoRef is always mounted (hidden), so we can attach immediately
       if (videoRef.current) {
         videoRef.current.srcObject = stream
-        await videoRef.current.play()
       }
       setMode('camera')
       setStatus('')
@@ -173,8 +171,20 @@ export function ScanZone({ fields, onResult }: Props) {
       {/* Preview / Camera / Idle area */}
       <div className="relative w-full bg-primary/5 border border-border rounded-lg overflow-hidden"
            style={{ minHeight: 220 }}>
+
+        {/* Video always in DOM and visible so play() works; hidden by overlay when not in camera mode */}
+        <video
+          ref={videoRef}
+          autoPlay
+          playsInline
+          muted
+          className="w-full h-full object-cover"
+          style={{ minHeight: 220 }}
+        />
+
+        {/* Idle placeholder overlaid on top of video */}
         {mode === 'idle' && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6">
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 bg-primary/5">
             <div className="w-12 h-12 rounded-full bg-border flex items-center justify-center">
               <svg className="w-6 h-6 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -185,18 +195,10 @@ export function ScanZone({ fields, onResult }: Props) {
           </div>
         )}
 
-        {/* Always mounted so videoRef is available before startCamera is called */}
-        <video
-          ref={videoRef}
-          autoPlay
-          playsInline
-          muted
-          className="w-full h-full object-cover"
-          style={{ minHeight: 220, display: mode === 'camera' ? 'block' : 'none' }}
-        />
-
         {mode === 'preview' && preview && (
-          <img src={preview} alt="scan" className="w-full object-contain" style={{ maxHeight: 300 }} />
+          <div className="absolute inset-0">
+            <img src={preview} alt="scan" className="w-full object-contain" style={{ maxHeight: 300 }} />
+          </div>
         )}
 
         {isScanning && (
