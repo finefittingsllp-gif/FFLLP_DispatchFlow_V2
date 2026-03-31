@@ -53,16 +53,20 @@ export function ScanZone({ fields, onResult }: Props) {
         video: { facingMode: 'environment', width: { ideal: 1920 }, height: { ideal: 1080 } },
       })
       streamRef.current = stream
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream
-        videoRef.current.play()
-      }
-      setMode('camera')
+      setMode('camera')  // render <video> first, then attach in useEffect
       setStatus('')
     } catch {
       setStatus('Camera access denied. Please use file upload instead.')
     }
   }, [])
+
+  // Attach stream once the <video> element is in the DOM
+  useEffect(() => {
+    if (mode === 'camera' && videoRef.current && streamRef.current) {
+      videoRef.current.srcObject = streamRef.current
+      videoRef.current.play().catch(() => {})
+    }
+  }, [mode])
 
   const stopCamera = useCallback(() => {
     streamRef.current?.getTracks().forEach(t => t.stop())
