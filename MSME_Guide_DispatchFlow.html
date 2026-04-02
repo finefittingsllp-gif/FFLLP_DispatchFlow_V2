@@ -252,12 +252,49 @@
       font-size: 12px; font-weight: 700;
     }
 
+    /* REAL SCREENSHOT — replaces dashed placeholder */
+    .ss-img {
+      margin: 20px 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+      background: #fff;
+    }
+    .ss-img img {
+      width: 100%; display: block;
+      object-fit: contain; max-height: 480px;
+    }
+
+    /* TWO SCREENSHOTS SIDE BY SIDE */
+    .ss-2col {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 20px 0;
+    }
+    .ss-2col-label {
+      text-align: center; font-size: 11px; font-weight: 700;
+      color: var(--muted); margin-top: 6px; text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* SETTINGS GRID — 2 columns, even heights */
+    .ss-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin: 20px 0;
+    }
+    .ss-grid .ss-img img { max-height: 340px; object-fit: cover; object-position: top; }
+
     /* PRINT */
     @media print {
       .cover { page-break-after: always; }
       section { page-break-inside: avoid; }
       .ch { page-break-after: avoid; }
       body { font-size: 14px; }
+      .ss-img img { max-height: 320px; }
+    }
+
+    @media (max-width: 600px) {
+      .ss-2col, .ss-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -399,12 +436,6 @@
       whenever you need it — all for free.
     </div>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of the Dashboard / Home Screen</div>
-    </div>
-    <p class="caption">The app's home screen — shows today's activity and quick buttons to create new records</p>
   </section>
 
   <hr />
@@ -545,12 +576,17 @@
       </li>
     </ul>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot showing camera open on left, and auto-filled form on right with orange-highlighted fields</div>
+    <div class="ss-2col">
+      <div>
+        <div class="ss-img"><img src="screenshots/Camera view with the invoice.jpeg" alt="Camera pointed at an invoice" /></div>
+        <div class="ss-2col-label">Camera pointed at the document</div>
+      </div>
+      <div>
+        <div class="ss-img"><img src="screenshots/Form auto-filled by the app.png" alt="Form auto-filled by OCR" /></div>
+        <div class="ss-2col-label">Form filled automatically — orange = read from the slip</div>
+      </div>
     </div>
-    <p class="caption">Left: Camera view with the slip. Right: Form auto-filled by the app — orange fields were read from the slip</p>
+    <p class="caption">Left: Camera captures the document. Right: Every field is filled in automatically.</p>
 
     <div class="box box-tip">
       <strong>✅ What If the App Reads Something Wrong?</strong>
@@ -792,53 +828,53 @@
     </div>
 
     <p>
-      After your IT person has completed the setup, opening DispatchFlow every day is as simple as:
+      DispatchFlow is available online — no installation needed on your computer.
+      Just open a browser and go to the link. That is it.
     </p>
 
     <ul class="steps">
       <li>
         <div class="sn">1</div>
         <div class="sc">
-          <strong>Double-click the desktop shortcut</strong>
-          <p>Your IT person will have created a shortcut. Double-click it. A black window may flash briefly — that is the reading engine starting up. Leave it running in the background.</p>
+          <strong>Open Google Chrome on your computer or phone</strong>
+          <p>Chrome works best. You can also use Edge or any modern browser.</p>
         </div>
       </li>
       <li>
         <div class="sn">2</div>
         <div class="sc">
-          <strong>Open Google Chrome (or any browser)</strong>
-          <p>Open your web browser — Chrome works best.</p>
+          <strong>Go to the DispatchFlow link</strong>
+          <p>Type or click the link that has been shared with you — it will look something like
+          <strong>dispatchflow.vercel.app</strong>. Bookmark it immediately so you can open it with one click every day.</p>
         </div>
       </li>
       <li>
         <div class="sn">3</div>
         <div class="sc">
-          <strong>Type the app address in the address bar</strong>
-          <p>Your IT person will give you a simple address like <strong>localhost:5173</strong> to type. Bookmark it so you do not have to type it again.</p>
+          <strong>The first time: a Setup Wizard appears</strong>
+          <p>The app guides you through a 4-step setup to enter your company details. This only happens once. See Section 8.</p>
         </div>
       </li>
       <li>
         <div class="sn">4</div>
         <div class="sc">
-          <strong>The first time: Setup Wizard appears</strong>
-          <p>The app will guide you through a 4-step setup to enter your company details. This only happens once. See Section 8.</p>
-        </div>
-      </li>
-      <li>
-        <div class="sn">5</div>
-        <div class="sc">
-          <strong>After that: Enter your name and start working</strong>
+          <strong>Every time after that: enter your name and start working</strong>
           <p>Each time you open the app, it asks for your name. Type it and press OK. You are now on the home screen, ready to scan slips.</p>
         </div>
       </li>
     </ul>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of the name prompt that appears at the start of each session</div>
+    <div class="box box-tip">
+      <strong>✅ Bookmark the Link</strong>
+      After opening the app for the first time, press <strong>Ctrl + D</strong> (or tap the star icon
+      in the address bar on mobile) to save it as a bookmark. From then on, one click opens the app —
+      no typing the address every day.
     </div>
-    <p class="caption">The name prompt — enter your name so records are tagged with who created them</p>
+
+    <div class="ss-img">
+      <img src="screenshots/the name prompt.png" alt="Operator name prompt screen" />
+    </div>
+    <p class="caption">The name prompt — type your name and press OK to start your session</p>
   </section>
 
   <hr />
@@ -880,12 +916,10 @@
       only you and trusted senior staff should know it.
     </div>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of the Setup Wizard — Step 1: Company Details form</div>
+    <div class="ss-img">
+      <img src="screenshots/Setup wizard.png" alt="Setup Wizard Step 1 — Company Details" />
     </div>
-    <p class="caption">Step 1 of the setup wizard — fill in your company name, GST, address, and choose a PIN</p>
+    <p class="caption">Step 1 — enter your company name, GST number, address, and choose your Admin PIN</p>
 
     <h3>Step 2 — Choose Your Industry Type</h3>
     <p>
@@ -904,12 +938,10 @@
       </tbody>
     </table>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of Step 2 — Industry template selection with 5 options</div>
+    <div class="ss-img">
+      <img src="screenshots/Industry template selection with 5 options.png" alt="Industry template selection" />
     </div>
-    <p class="caption">Step 2 — choose the option that best describes your business</p>
+    <p class="caption">Step 2 — choose the industry template that best matches your business</p>
 
     <h3>Step 3 — Set Up Your Slip Fields</h3>
     <p>
@@ -931,12 +963,10 @@
       to review the auto-filled form.
     </div>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of Step 3 — the form field editor with drag handles and add/delete buttons</div>
+    <div class="ss-img">
+      <img src="screenshots/the form field editor with drag handles and adddelete buttons.png" alt="Form field editor with drag handles" />
     </div>
-    <p class="caption">Step 3 — customize your form fields to match your paper slip layout</p>
+    <p class="caption">Step 3 — drag to reorder fields, use + to add new ones, bin icon to remove</p>
 
     <h3>Step 4 — Connect to Google (Optional)</h3>
     <p>
@@ -950,12 +980,10 @@
       <li>A <strong>Google Sheet link</strong> — the spreadsheet where records will be stored</li>
     </ul>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of Step 4 — Google connection screen with API key field and Skip button</div>
+    <div class="ss-img">
+      <img src="screenshots/Google connection screen with API key field and Skip button.png" alt="Google connection screen with API key field and Skip button" />
     </div>
-    <p class="caption">Step 4 — enter your Google API key or click Skip to come back to this later</p>
+    <p class="caption">Step 4 — paste your Gemini API key here, or click Skip to set it up later from Settings</p>
 
     <p>
       After finishing all 4 steps, the app will ask for your name.
@@ -1009,12 +1037,10 @@
       </li>
     </ul>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of the Google AI Studio API key page showing the "Create API Key" button</div>
+    <div class="ss-img">
+      <img src="screenshots/Google AI Studio — click Create API Key to get your free Gemini key.png" alt="Google AI Studio — Create API Key button" />
     </div>
-    <p class="caption">Google AI Studio — click Create API Key to get your free Gemini key</p>
+    <p class="caption">Google AI Studio — click "Create API Key" to generate your free Gemini key</p>
 
     <h3>Part B — Setting Up the Google Sheet Link</h3>
     <p>
@@ -1026,13 +1052,6 @@
 
     <p>Once set up, the connection is permanent — you do not need to do it again.
     Every new dispatch record will automatically appear in the Google Sheet.</p>
-
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of Settings → API Configuration section showing the Gemini Key field, test button showing "Connected ✓"</div>
-    </div>
-    <p class="caption">Settings page — after entering your keys, the "Test" buttons confirm everything is working</p>
   </section>
 
 
@@ -1087,13 +1106,6 @@
         <p>The record is now saved. If you chose "Save &amp; Print", the print screen opens immediately.</p>
       </div>
     </div>
-
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of the full Create Dispatch screen — camera on left, auto-filled form on right</div>
-    </div>
-    <p class="caption">The Create Dispatch screen — scan on the left, review and save on the right</p>
 
     <h3>Using a Photo Instead of the Camera</h3>
     <p>
@@ -1160,12 +1172,17 @@
       </div>
     </div>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of the Create Invoice screen showing multiple line items extracted from a scanned invoice</div>
+    <div class="ss-2col">
+      <div>
+        <div class="ss-img"><img src="screenshots/Camera view with the invoice.jpeg" alt="Camera scanning an invoice" /></div>
+        <div class="ss-2col-label">Camera pointed at the invoice</div>
+      </div>
+      <div>
+        <div class="ss-img"><img src="screenshots/Form auto-filled by the app.png" alt="Form auto-filled with invoice line items" /></div>
+        <div class="ss-2col-label">All line items extracted automatically</div>
+      </div>
     </div>
-    <p class="caption">Invoice screen — each product line is extracted and shown as a separate row automatically</p>
+    <p class="caption">The invoice is scanned on the left — every product line appears filled in on the right</p>
   </section>
 
   <hr />
@@ -1209,12 +1226,10 @@
       </div>
     </div>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of the History page with search bar active, date filter, and list of records</div>
+    <div class="ss-img">
+      <img src="screenshots/History page.png" alt="Dispatch History page with search and filters" />
     </div>
-    <p class="caption">The History page — search, filter, and browse all your past dispatch records</p>
+    <p class="caption">The History page — search by keyword, filter by date or staff name, download as Excel</p>
 
     <h3>Editing a Record You Just Saved</h3>
     <p>
@@ -1257,12 +1272,10 @@
       <li>Or, to save as a PDF, choose <strong>"Save as PDF"</strong> instead of a printer</li>
     </ol>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of the print preview screen showing company header, logo, and dispatch details</div>
+    <div class="ss-img">
+      <img src="screenshots/Print preview.png" alt="Print preview with company header and dispatch details" />
     </div>
-    <p class="caption">Print preview — company header with logo on top, clean dispatch details below</p>
+    <p class="caption">Print preview — your company name and logo at the top, all dispatch details neatly below</p>
   </section>
 
   <hr />
@@ -1310,12 +1323,10 @@
       Do not click "Later" and ignore it — your data is important!
     </div>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of the Dashboard showing the weekly backup reminder banner at the top</div>
+    <div class="ss-img">
+      <img src="screenshots/The backup reminder appears every Monday.png" alt="Weekly backup reminder banner on Dashboard" />
     </div>
-    <p class="caption">The backup reminder appears every Monday — click "Download Backup" immediately</p>
+    <p class="caption">The backup reminder banner — click "Download Backup" as soon as you see this</p>
   </section>
 
 
@@ -1351,12 +1362,14 @@
       </tbody>
     </table>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of the full Settings page showing all sections</div>
+    <div class="ss-grid">
+      <div class="ss-img"><img src="screenshots/The Settings page  1.png" alt="Settings — Company Details" /></div>
+      <div class="ss-img"><img src="screenshots/The Settings page  2.png" alt="Settings — API Configuration" /></div>
+      <div class="ss-img"><img src="screenshots/The Settings page  3.png" alt="Settings — Session & Grace Period" /></div>
+      <div class="ss-img"><img src="screenshots/The Settings page  4.png" alt="Settings — Data Management" /></div>
+      <div class="ss-img"><img src="screenshots/The Settings page  5.png" alt="Settings — Sync Log & Retention" /></div>
     </div>
-    <p class="caption">The Settings page — all controls in one place, accessible only with the Admin PIN</p>
+    <p class="caption">The Settings page — scroll through all sections: Company Details, API Keys, Timeouts, Backup, Sync Log</p>
   </section>
 
   <hr />
@@ -1395,12 +1408,10 @@
       <li>If any records are missing (were not entered)</li>
     </ul>
 
-    <div class="ss">
-      <div class="ss-icon">📸</div>
-      <div class="ss-title">Add Screenshot Here</div>
-      <div class="ss-hint">Screenshot of the operator name modal with previous names shown as buttons</div>
+    <div class="ss-img">
+      <img src="screenshots/the name prompt.png" alt="Operator name modal with previous names as quick-select buttons" />
     </div>
-    <p class="caption">The name prompt — previous operators appear as buttons for quick selection</p>
+    <p class="caption">The name prompt — tap a previous name to select it instantly, or type a new one</p>
 
     <div class="box box-info">
       <strong>ℹ️ No Separate Passwords for Staff</strong>
